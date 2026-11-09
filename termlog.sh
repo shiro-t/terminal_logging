@@ -1,7 +1,8 @@
 #!/bin/zsh
 SCRIPTLOGDIR="${HOME}/.terminal-logs"
 
-eval `/opt/homebrew/bin/brew shellenv`
+#eval `/opt/homebrew/bin/brew shellenv`
+export PATH="/opt/homebrew/bin:$PATH"
 
 if [ ! -d "${SCRIPTLOGDIR}" ] ; then
     mkdir -p "${SCRIPTLOGDIR}"
