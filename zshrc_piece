@@ -1,0 +1,23 @@
+## The script should be included in bashrc/zshrc
+
+##
+## command prompt ( bash & zsh )
+## command prompt with time when PTB/PTZ configured (for script logs)
+##
+[ -z "${ZSH_VERSION}" ] && PS1="${PTB}"'\h:\W\$ ' || PS1="${PTZ}"'%(4~|.../%2~|%m:%~)$ ' 
+
+##
+## disable Terminal Shell Integration (OSC7) output in script logs
+##
+if [ "${PTZ}" ] ; then
+    if [ -z "${ZSH_VERSION}" ] ; then
+        ## bash
+        PROMPT_COMMAND=${PROMPT_COMMAND#update_terminal_cwd;} 
+    else
+        ## zsh
+        precmd_functions=(${precmd_functions:#update_terminal_cwd})
+    fi
+    unset PTZ
+    unset PTB
+fi
+
