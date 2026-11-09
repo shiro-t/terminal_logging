@@ -1,4 +1,4 @@
-#!/bin/zsh
+#!/bin/bash
 SCRIPTLOGDIR="${HOME}/.terminal-logs"
 
 #eval `/opt/homebrew/bin/brew shellenv`
