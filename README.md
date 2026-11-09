@@ -43,10 +43,12 @@ Terminal.app では複数の Profile を定義でき、どの Profile のウィ�
 3. exec にて script コマンドを実行、ログの格納先に日時のファイル名でログファイルを作ります
 4. script コマンドがログインシェルを起動します
 
-script コマンドの実行ですが、gawk がある場合は script コマンドの出力を gawk にパイプで接続、各行頭に日付を入れています。
+script コマンドの実行ですが、gawk がある場合は script コマンドの出力を gawk にパイプで接続、各行頭に日付を入れています。  
+また、ansifilter をインストールしている場合は sed と col -bx コマンドで行っているエスケープシーケンスの処理に ansifilter を使います。
+
 gawk がない場合は単純にログファイルへ書き出しております。
 
-homebrew で gawk をインストールしていることを想定して、/opt/homebrew/bin をパスに加えております。
+homebrew で gawk, ansifilter をインストールしていることを想定して、/opt/homebrew/bin をパスに加えております。
 
 ## zshrc_piece
 
