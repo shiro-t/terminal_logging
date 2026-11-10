@@ -1,5 +1,5 @@
 #!/bin/bash
-SCRIPTLOGDIR="${HOME}/.terminal-logs"
+SCRIPTLOGDIR="${HOME}/Documents/terminal_logs"
 
 export PATH="/opt/homebrew/bin:$PATH"
 
