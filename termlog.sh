@@ -1,5 +1,6 @@
 #!/bin/bash
 SCRIPTLOGDIR="${HOME}/Documents/terminal_logs"
+TTL="${HOME}/Applications/libexec/ttl"
 
 export PATH="/opt/homebrew/bin:$PATH"
 
@@ -9,7 +10,12 @@ fi
 export PTZ='[%D{%Y/%m/%d %H:%M}] '
 export PTB='[\D{%Y/%m/%d %H:%M}] '
 
-if type gawk &>/dev/null ; then
+echo $TTL
+if [ -e "${TTL}" ] ; then
+    exec script -F -q >( exec "${TTL}"> "${SCRIPTLOGDIR}"/$(date "+%Y-%m-%d_%H-%M-%S") ) $SHELL -l
+
+elif type gawk &>/dev/null ; then
+
     if type ansifilter &>/dev/null ; then
         exec script -F -q >( ansifilter --ignore-csi | exec gawk '{print strftime("[%Y-%m-%d %H:%M:%S] ") $0;fflush()}' > "${SCRIPTLOGDIR}"/$(date "+%Y-%m-%d_%H-%M-%S") ) \
                           $SHELL -l
