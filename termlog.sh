@@ -10,7 +10,6 @@ fi
 export PTZ='[%D{%Y/%m/%d %H:%M}] '
 export PTB='[\D{%Y/%m/%d %H:%M}] '
 
-echo $TTL
 if [ -e "${TTL}" ] ; then
     exec script -F -q >( exec "${TTL}"> "${SCRIPTLOGDIR}"/$(date "+%Y-%m-%d_%H-%M-%S") ) $SHELL -l
 
