@@ -88,6 +88,30 @@ ttl を使う場合はパイプを全く使わないのでハンドリングの�
 
 なお、最もプロセスがつく無いのは script だけを使う場合になります。ただ、この場合ログの行頭に日時が記録されなくなり、エスケープシーケンスやらも残った状態になります。
 
+## bsdscript/script.c
+
+macOS の script コマンド、すなわち古い *BSD での script コマンドは -w オプションがなく、ターミナルのウィンドウのリサイズを子プロセスへ伝達しません。  
+FreeBSD の script ではこの点が修正されており、 -w オプションを追加することで子プロセスへ SIGWINCH を伝達します。
+
+このため以下から FreeBSD の script コマンドを取得、macOS でビルドできるようにだけ修正を加え、これを利用するようにしました。
+[https://raw.githubusercontent.com/freebsd/freebsd-src/refs/heads/main/usr.bin/script/script.c](https://raw.githubusercontent.com/freebsd/freebsd-src/refs/heads/main/usr.bin/script/script.c)
+
+修正したことは以下の2点です。
+
+- FILEMON 関連の機能のコメントアウト
+- libutil.h ではなく util.h を include
+
+macOS には FreeBSD にある FILEMON の機能そのものはないので IFDEF で無効化しました。  
+なお、以下にある Darwin での script.c でもほぼ同等の修正がされております。
+[https://raw.githubusercontent.com/apple-oss-distributions/shell_cmds/b33f386ac431f17d4799b5662f20ff2ddf0773b9/script/script.c](https://raw.githubusercontent.com/apple-oss-distributions/shell_cmds/b33f386ac431f17d4799b5662f20ff2ddf0773b9/script/script.c)
+
+Makefile は用意していないので、Command Line Tools か Xcode をインストール後、以下コマンドでビルドしてください。
+
+```
+cc -o script -lutil
+```
+
+
 ## 考えるべきこと
 
 ### ログファイルの清掃
