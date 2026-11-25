@@ -20,7 +20,7 @@ Terminal.app では複数の Profile を定義でき、どの Profile のウィ�
 - 起動するコマンドを次の termlog.sh に変更
   - シェル内で実行のチェックを外す
 
-![シェルの設定で termlog.sh を使うように設定]https://github.com/shiro-t/terminal_logging/blob/cb27ecb89b778b5327121bd693b4fdb44ab3f86b/_readme_picts/configure_term1.png)
+![シェルの設定で termlog.sh を使うように設定](https://github.com/shiro-t/terminal_logging/blob/cb27ecb89b778b5327121bd693b4fdb44ab3f86b/_readme_picts/configure_term1.png)
   
 - ウィンドウのタイトルの以下にチェックをしない
   - 作業ディレクトリまたは書類
